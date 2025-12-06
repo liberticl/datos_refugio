@@ -4,6 +4,9 @@ from utils import *
 registered = get_data('data/registrados.csv')
 non_registered = get_data('data/no_registrados.csv')
 
+registered = registered.dropna(subset=['RUT'])
+non_registered = non_registered.dropna(subset=['RUT'])
+
 # TO-DO
 # REGISTRADOS:
 # - Cuántos han venido antes?

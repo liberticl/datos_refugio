@@ -38,8 +38,9 @@ def get_day(date):
 
 
 def parse_time(hour_str):
-    reference_date = datetime(2023, 12, 8)
-    hour, minute = map(int, hour_str.split(':'))
+    reference_date = datetime(2024, 12, 8)
+    time_parts = hour_str.split(':')
+    hour, minute = map(int, time_parts[:2])
     dt = datetime.combine(reference_date, datetime.min.time()) + timedelta(hours=hour, minutes=minute)
     if hour > 16:  # Si es mayor a las 16, pertenece al día anterior
         dt -= timedelta(days=1)
@@ -89,7 +90,7 @@ def bar_chart(df: pd.DataFrame, colname: str, usedate: bool, save=False, savenam
                 plt.savefig('images/graph.jpg', dpi=300, bbox_inches='tight')
     plt.show()
 
-def inout_chart(df: pd.DataFrame, col_name: str, out: bool, save=False, savename=None):
+def inout_chart(df: pd.DataFrame, col_name: str, out = False, save=False, savename=None):
     if not out:
         df = df.sort_values(by=col_name, ascending=True).reset_index()
     else:
